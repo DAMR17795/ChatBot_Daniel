@@ -56,7 +56,7 @@ class MensajeAdapter: RecyclerView.Adapter<MensajeAdapter.MensajeViewHolder>() {
     fun insertarMensaje (mensaje: Mensaje) {
         this.listaMensaje.add(mensaje)
         notifyItemInserted(listaMensaje.size)
-        //notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
 
