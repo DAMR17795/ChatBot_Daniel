@@ -49,15 +49,15 @@ object RespuestaBot {
                 when (random) {
                     0 -> "Estoy bien gracias"
                     1 -> "No tengo sentimientos, soy un bot"
-                    2 -> "Bien, ¿como estás tú?"
+                    2 -> "Bien, espero que tu también"
                     else -> "error"
                 }
             }
 
             //What time is it?
-            message.contains("tiempo") && message.contains("?")-> {
+            message.contains("hora") && message.contains("?")-> {
                 val timeStamp = Timestamp(System.currentTimeMillis())
-                val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                val sdf = SimpleDateFormat("HH:mm")
                 val date = sdf.format(Date(timeStamp.time))
 
                 date.toString()
