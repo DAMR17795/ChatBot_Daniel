@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     var messagesList = mutableListOf<Mensaje>()
 
     private lateinit var adapter: MensajeAdapter
-    private val botList = listOf("Peter", "Francesca", "Luigi", "Igor")
+    private val botList = listOf("Juan", "Claudiu", "Miguel", "Ivan")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
