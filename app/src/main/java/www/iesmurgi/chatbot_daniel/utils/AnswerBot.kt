@@ -21,7 +21,7 @@ object AnswerBot {
             }
 
             //Math calculations
-            message.contains("resolve") -> {
+            message.contains("solve") -> {
                 val equation: String? = message.substringAfterLast("solve")
                 return try {
                     val answer = OperacionMatematica.solveMath(equation ?: "0")
