@@ -6,4 +6,8 @@ object Constantes {
 
     const val ABRIR_GOOGLE = "Abriendo Google..."
     const val ABRIR_BUSCADOR = "Buscando..."
+
+    const val ABRIR_INSTAGRAM = "Abriendo Instagram..."
+    const val ABRIR_YOUTUBE = "Abriendo Youtube..."
+    const val CERRAR = "Hasta luego"
 }

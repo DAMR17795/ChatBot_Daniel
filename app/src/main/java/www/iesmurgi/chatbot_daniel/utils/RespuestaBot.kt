@@ -2,6 +2,9 @@ package www.iesmurgi.chatbot_daniel.utils
 
 import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_BUSCADOR
 import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_GOOGLE
+import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_INSTAGRAM
+import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_YOUTUBE
+import www.iesmurgi.chatbot_daniel.utils.Constantes.CERRAR
 import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
@@ -54,6 +57,17 @@ object RespuestaBot {
                 }
             }
 
+            //Contar un chiste
+            message.contains("cuentame") && message.contains("chiste") -> {
+                when (random) {
+                    0 -> "Hay tres tipos de personas en el mundo: los que saben contar y los que no."
+                    1 -> "El otro día vendí mi aspiradora. Lo único que hacía era acumular polvo."
+                    2 -> "¿Qué le dice un jardinero a otro? Nos vemos cuando podamos."
+                    else -> "error"
+                }
+            }
+
+
             //What time is it?
             message.contains("hora") && message.contains("?")-> {
                 val timeStamp = Timestamp(System.currentTimeMillis())
@@ -63,9 +77,24 @@ object RespuestaBot {
                 date.toString()
             }
 
+            //Despedida
+            message.contains("adios")-> {
+                CERRAR
+            }
+
             //Open Google
             message.contains("abre") && message.contains("google")-> {
                 ABRIR_GOOGLE
+            }
+
+            //Open Instagram
+            message.contains("abre") && message.contains("instagram")-> {
+                ABRIR_INSTAGRAM
+            }
+
+            //Open Youtube
+            message.contains("abre") && message.contains("youtube")-> {
+                ABRIR_YOUTUBE
             }
 
             //Search on the internet

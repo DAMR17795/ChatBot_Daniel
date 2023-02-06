@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.Message
 import android.widget.Button
 import android.widget.EditText
@@ -11,12 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
 import www.iesmurgi.chatbot_daniel.datos.Mensaje
+import www.iesmurgi.chatbot_daniel.utils.AnswerBot
 import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_BUSCADOR
 import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_GOOGLE
+import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_INSTAGRAM
+import www.iesmurgi.chatbot_daniel.utils.Constantes.ABRIR_YOUTUBE
+import www.iesmurgi.chatbot_daniel.utils.Constantes.CERRAR
 import www.iesmurgi.chatbot_daniel.utils.Constantes.ENVIAR_ID
 import www.iesmurgi.chatbot_daniel.utils.Constantes.RECIBIR_ID
 import www.iesmurgi.chatbot_daniel.utils.RespuestaBot
 import www.iesmurgi.chatbot_daniel.utils.Tiempo
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,17 +34,27 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: MensajeAdapter
     private val botList = listOf("Juan", "Claudiu", "Miguel", "Ivan")
+    private lateinit var lenguaje:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        lenguaje = Locale.getDefault().language
 
         recyclerView()
 
         clickEvents()
 
         val random = (0..3).random()
-        customBotMessage("¡Hola!, hoy estás hablando con ${botList[random]}, ¿en qué puedo ayudarte?")
+        if (lenguaje.equals("es")) {
+            customBotMessage("¡Hola!, hoy estás hablando con ${botList[random]}, ¿en qué puedo ayudarte?")
+        }
+
+        if (lenguaje.equals("en")) {
+            customBotMessage("Hello!, today you are chatting with ${botList[random]}, How can I help you?")
+        }
+
     }
 
     private fun clickEvents() {
@@ -103,8 +119,16 @@ class MainActivity : AppCompatActivity() {
             delay(1000)
 
             withContext(Dispatchers.Main) {
-                //Gets the response
-                val response = RespuestaBot.basicResponses(message)
+
+                var response = ""
+                //Español
+                if (lenguaje.equals("es")) {
+                     response = RespuestaBot.basicResponses(message)
+                }
+                //Inglés
+                if (lenguaje.equals("en")) {
+                    response = AnswerBot.basicResponses(message)
+                }
 
                 //Adds it to our local list
                 messagesList.add(Mensaje(response, RECIBIR_ID, timeStamp))
@@ -115,18 +139,39 @@ class MainActivity : AppCompatActivity() {
                 //Scrolls us to the position of the latest message
                 findViewById<RecyclerView>(R.id.rv_messages).scrollToPosition(adapter.itemCount - 1)
 
-                //Starts Google
+                //Segun la respuesta
                 when (response) {
+                    //Abrir google
                     ABRIR_GOOGLE -> {
                         val site = Intent(Intent.ACTION_VIEW)
                         site.data = Uri.parse("https://www.google.com/")
                         startActivity(site)
                     }
+                    //Cerrar
+                    CERRAR -> {
+                        Handler().postDelayed({
+                            finish()
+                        }, 1000)
+                    }
+
+                    //Abrir buscador
                     ABRIR_BUSCADOR -> {
                         val site = Intent(Intent.ACTION_VIEW)
                         val searchTerm: String? = message.substringAfterLast("busca")
                         site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
                         startActivity(site)
+                    }
+
+                    //Abrir instagram
+                    ABRIR_INSTAGRAM -> {
+                        intent= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/"))
+                        startActivity(intent)
+                    }
+
+                    //Abrir youtube
+                    ABRIR_YOUTUBE -> {
+                        intent= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/"))
+                        startActivity(intent)
                     }
 
                 }

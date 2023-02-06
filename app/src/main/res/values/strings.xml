@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ChatBot_Daniel</string>
+    <string name="saludo">Adios</string>
 </resources>
