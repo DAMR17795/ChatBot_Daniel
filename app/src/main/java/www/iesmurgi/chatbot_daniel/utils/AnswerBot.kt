@@ -73,27 +73,27 @@ object AnswerBot {
 
             //Despedida
             message.contains("bye")-> {
-                Constants.CERRAR
+                Constants.CLOSE
             }
 
             //Open Google
             message.contains("open") && message.contains("google")-> {
-                Constants.ABRIR_GOOGLE
+                Constants.OPEN_GOOGLE
             }
 
             //Open Instagram
             message.contains("open") && message.contains("instagram")-> {
-                Constants.ABRIR_INSTAGRAM
+                Constants.OPEN_INSTAGRAM
             }
 
             //Open Youtube
             message.contains("open") && message.contains("youtube")-> {
-                Constants.ABRIR_YOUTUBE
+                Constants.OPEN_YOUTUBE
             }
 
             //Search on the internet
             message.contains("search")-> {
-                Constants.ABRIR_BUSCADOR
+                Constants.OPEN_SEARCH
             }
 
             //When the programme doesn't understand...
