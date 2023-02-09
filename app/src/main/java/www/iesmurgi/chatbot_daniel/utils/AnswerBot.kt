@@ -72,7 +72,7 @@ object AnswerBot {
             }
 
             //Despedida
-            message.contains("bye")-> {
+            message.contains("bye") || message.contains("goodbye")-> {
                 Constants.CLOSE
             }
 
