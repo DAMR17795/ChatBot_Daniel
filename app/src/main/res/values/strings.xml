@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ChatBot_Daniel</string>
-    <string name="saludo">Adios</string>
+    <string name="escribir">Escribe un mensaje...</string>
+    <string name="enviar">ENVIAR</string>
 </resources>

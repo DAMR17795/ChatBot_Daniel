@@ -24,7 +24,7 @@
             android:layout_weight=".5"
             android:background="@drawable/round_button"
             android:backgroundTint="@android:color/white"
-            android:hint="Type a message..."
+            android:hint="@string/escribir"
             android:padding="10dp"
             android:singleLine="true" />
 
@@ -36,7 +36,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_button"
             android:backgroundTint="#1E8ADF"
-            android:text="Send"
+            android:text="@string/enviar"
             android:textColor="@android:color/white" />
 
     </LinearLayout>
