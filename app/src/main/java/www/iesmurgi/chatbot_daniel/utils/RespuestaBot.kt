@@ -14,7 +14,7 @@ object RespuestaBot {
     fun basicResponses(_message: String): String {
 
         val random = (0..2).random()
-        val message =_message.toLowerCase()
+        val message =_message.lowercase()
 
         return when {
 
@@ -48,7 +48,7 @@ object RespuestaBot {
             }
 
             //How are you?
-            message.contains("como estas") -> {
+            (message.contains("como estas") || message.contains("cómo estás")) && message.contains("?") -> {
                 when (random) {
                     0 -> "Estoy bien gracias"
                     1 -> "No tengo sentimientos, soy un bot"
@@ -58,7 +58,7 @@ object RespuestaBot {
             }
 
             //Contar un chiste
-            message.contains("cuentame") && message.contains("chiste") -> {
+            (message.contains("cuentame") || message.contains("cuéntame")) && message.contains("chiste") -> {
                 when (random) {
                     0 -> "Hay tres tipos de personas en el mundo: los que saben contar y los que no."
                     1 -> "El otro día vendí mi aspiradora. Lo único que hacía era acumular polvo."

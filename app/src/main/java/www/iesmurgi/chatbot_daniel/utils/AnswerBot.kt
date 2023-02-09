@@ -8,12 +8,12 @@ object AnswerBot {
     fun basicResponses(_message: String): String {
 
         val random = (0..2).random()
-        val message =_message.toLowerCase()
+        val message =_message.lowercase()
 
         return when {
 
             //Flips a coin
-            message.contains("launch") && message.contains("coin") -> {
+            message.contains("flip") && message.contains("coin") -> {
                 val r = (0..1).random()
                 val result = if (r == 0) "heads" else "tails"
 
